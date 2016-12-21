@@ -9,6 +9,7 @@ security:
       id: fos_user.user_provider.username
   firewalls:
     main:
+      http_basic: ~
       pattern: ^/
       form_login:
         provider: fos_userbundle
@@ -17,6 +18,6 @@ security:
       anonymous: true
   access_control:
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/admin/, role: ROLE_ADMIN }
+    - { path: ^/register, role: ROLE_ADMIN }
