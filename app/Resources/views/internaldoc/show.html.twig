@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Internaldoc</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ internalDoc.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateofconclusion</th>
+                <td>{% if internalDoc.dateOfConclusion %}{{ internalDoc.dateOfConclusion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefrom</th>
+                <td>{% if internalDoc.dateFrom %}{{ internalDoc.dateFrom|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateto</th>
+                <td>{% if internalDoc.dateTo %}{{ internalDoc.dateTo|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('internaldoc_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('internaldoc_edit', { 'id': internalDoc.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

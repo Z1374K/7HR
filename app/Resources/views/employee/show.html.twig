@@ -10,40 +10,48 @@
                 <td>{{ employee.id }}</td>
             </tr>
             <tr>
-                <th>Nazwisko</th>
-                <td>{{ employee.nazwisko }}</td>
+                <th>Name</th>
+                <td>{{ employee.name }}</td>
             </tr>
             <tr>
-                <th>Imie</th>
-                <td>{{ employee.imie }}</td>
+                <th>Surname</th>
+                <td>{{ employee.surName }}</td>
             </tr>
             <tr>
-                <th>Dataur</th>
-                <td>{{ employee.dataUr }}</td>
+                <th>Pob</th>
+                <td>{{ employee.pob }}</td>
             </tr>
             <tr>
-                <th>Miejsceur</th>
-                <td>{{ employee.miejsceUr }}</td>
+                <th>Dob</th>
+                <td>{% if employee.dob %}{{ employee.dob|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Miejscezam</th>
-                <td>{{ employee.miejsceZam }}</td>
+                <th>Citizenship</th>
+                <td>{{ employee.citizenship }}</td>
             </tr>
             <tr>
-                <th>Ulica</th>
-                <td>{{ employee.ulica }}</td>
-            </tr>
-            <tr>
-                <th>Obywatelstwo</th>
-                <td>{{ employee.obywatelstwo }}</td>
-            </tr>
-            <tr>
-                <th>Nrpaszportu</th>
-                <td>{{ employee.nrPaszportu }}</td>
+                <th>Passport</th>
+                <td>{{ employee.passport }}</td>
             </tr>
             <tr>
                 <th>Status</th>
                 <td>{{ employee.status }}</td>
+            </tr>
+            <tr>
+                <th>Visafrom</th>
+                <td>{% if employee.visaFrom %}{{ employee.visaFrom|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Visato</th>
+                <td>{% if employee.visaTo %}{{ employee.visaTo|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Permitfrom</th>
+                <td>{% if employee.permitFrom %}{{ employee.permitFrom|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Permitto</th>
+                <td>{% if employee.permitTo %}{{ employee.permitTo|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

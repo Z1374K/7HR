@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Internaldocs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dateofconclusion</th>
+                <th>Datefrom</th>
+                <th>Dateto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internalDoc in internalDocs %}
+            <tr>
+                <td><a href="{{ path('internaldoc_show', { 'id': internalDoc.id }) }}">{{ internalDoc.id }}</a></td>
+                <td>{% if internalDoc.dateOfConclusion %}{{ internalDoc.dateOfConclusion|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if internalDoc.dateFrom %}{{ internalDoc.dateFrom|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if internalDoc.dateTo %}{{ internalDoc.dateTo|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('internaldoc_show', { 'id': internalDoc.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('internaldoc_edit', { 'id': internalDoc.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('internaldoc_new') }}">Create a new internalDoc</a>
+        </li>
+    </ul>
+{% endblock %}

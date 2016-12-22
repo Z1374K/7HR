@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EmployeeType extends AbstractType
+class InternalDocType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('surName')->add('pob')->add('dob')->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')        ;
+        $builder->add('dateOfConclusion')->add('dateFrom')->add('dateTo')->add('position')->add('employee')->add('company');
     }
     
     /**
@@ -22,7 +22,7 @@ class EmployeeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Employee'
+            'data_class' => 'AppBundle\Entity\InternalDoc'
         ));
     }
 
@@ -31,7 +31,7 @@ class EmployeeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_employee';
+        return 'appbundle_internaldoc';
     }
 
 

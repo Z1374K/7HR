@@ -293,4 +293,27 @@ class Accomodation
     {
         return $this->employeeCost;
     }
+
+    /**
+     * Set town
+     *
+     * @param string $town
+     * @return Accomodation
+     */
+    public function setTown($town)
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
+    /**
+     * Get town
+     *
+     * @return string 
+     */
+    public function getTown()
+    {
+        return $this->town;
+    }
 }
