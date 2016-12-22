@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Workload</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ workLoad.id }}</td>
+            </tr>
+            <tr>
+                <th>Hoursinmnth</th>
+                <td>{{ workLoad.hoursInMnth }}</td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td>{{ workLoad.rate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('workload_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('workload_edit', { 'id': workLoad.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
