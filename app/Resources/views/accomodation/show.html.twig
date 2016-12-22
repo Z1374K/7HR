@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accomodation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ accomodation.id }}</td>
+            </tr>
+            <tr>
+                <th>Owner</th>
+                <td>{{ accomodation.owner }}</td>
+            </tr>
+            <tr>
+                <th>Varcost</th>
+                <td>{{ accomodation.varCost }}</td>
+            </tr>
+            <tr>
+                <th>Constantcost</th>
+                <td>{{ accomodation.constantCost }}</td>
+            </tr>
+            <tr>
+                <th>Roomnumber</th>
+                <td>{{ accomodation.roomNumber }}</td>
+            </tr>
+            <tr>
+                <th>Bednumber</th>
+                <td>{{ accomodation.bedNumber }}</td>
+            </tr>
+            <tr>
+                <th>Account</th>
+                <td>{{ accomodation.account }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ accomodation.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Employeecost</th>
+                <td>{{ accomodation.employeeCost }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accomodation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('accomodation_edit', { 'id': accomodation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

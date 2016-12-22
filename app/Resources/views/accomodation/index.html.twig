@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accomodations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Owner</th>
+                <th>Varcost</th>
+                <th>Constantcost</th>
+                <th>Roomnumber</th>
+                <th>Bednumber</th>
+                <th>Account</th>
+                <th>Telephone</th>
+                <th>Employeecost</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accomodation in accomodations %}
+            <tr>
+                <td><a href="{{ path('accomodation_show', { 'id': accomodation.id }) }}">{{ accomodation.id }}</a></td>
+                <td>{{ accomodation.owner }}</td>
+                <td>{{ accomodation.varCost }}</td>
+                <td>{{ accomodation.constantCost }}</td>
+                <td>{{ accomodation.roomNumber }}</td>
+                <td>{{ accomodation.bedNumber }}</td>
+                <td>{{ accomodation.account }}</td>
+                <td>{{ accomodation.telephone }}</td>
+                <td>{{ accomodation.employeeCost }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accomodation_show', { 'id': accomodation.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accomodation_edit', { 'id': accomodation.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accomodation_new') }}">Create a new accomodation</a>
+        </li>
+    </ul>
+{% endblock %}
