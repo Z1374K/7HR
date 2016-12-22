@@ -149,7 +149,7 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="pesel", type="string")
+     * @ORM\Column(name="pesel", type="string", nullable=true)
      */
     private $pesel;
 
