@@ -1,19 +1,19 @@
 <html>
 <h1>UMOWA O PRACĘ TYMCZASOWĄ</h1>
 
-<p>Umowa o pracę zawarta w Szczecinie w dniu {{ internaldoc.dateofconclusion|date }} roku pomiędzy:</p>
+<p>Umowa o pracę zawarta w Szczecinie w dniu {{ internaldoc.dateofconclusion|date("Y-m-d") }} roku pomiędzy:</p>
 <p>7HR Kamil Zieliński z siedzibą w Szczecinie, ul. Bolesława Śmiałego 18/1, 70-347 Szczecin, posiadającą
     NIP 669-227-92-62, REGON 320660237, reprezentowaną przez Pana Kamila Zielińskiego – właściciela, a
     {{ internaldoc.employee.name }} {{ internaldoc.employee.surname  }}. Zamieszkały(a): 	{{ internaldoc.employee.city }}., ul. {{ internaldoc.employee.address }},
-    urodzony {{ internaldoc.employee.dob|date }},
+    urodzony {{ internaldoc.employee.dob|date("Y-m-d") }},
     miejsce urodzenia: {{ internaldoc.employee.pob }}, legitymujący się paszportem nr {{ internaldoc.employee.passport }},
     zwanym dalej Pracownikiem Tymczasowym.</p>
 
 <p>Artykuł 1</p>
 
 
-<li>1. 7HR zatrudnia Pracownika Tymczasowego na czas określony od dnia {{ internaldoc.datefrom|date }} do dnia
-    {{ internaldoc.dateto|date }}
+<li>1. 7HR zatrudnia Pracownika Tymczasowego na czas określony od dnia {{ internaldoc.datefrom|date("Y-m-d") }} do dnia
+    {{ internaldoc.dateto|date("Y-m-d") }}
     w pełnym wymiarze czasu pracy na stanowisku: {{ internaldoc.position.name }} </li>
 
 <li>2. Każda ze stron może rozwiązać niniejszą umowę z zachowaniem 7 dniowego okresu wypowiedzenia.</li>
@@ -31,8 +31,8 @@
     dodatku za prace w godzinach nadliczbowych.</li>
 <p>Artykuł 4</p>
 <li>1. Wynagrodzenie zasadnicze brutto Pracownika Tymczasowego wynosi {{ internaldoc.position.rate }}
-    (słownie: jedenaście 50/100) za godzinę
-    pracy (średnio 1932,00 PLN miesięcznie, słownie: jeden tysiąc dziewięćset trzydzieści dwa 00/100).
+    (słownie: {{ transformer.toWords(internaldoc.position.rate * 100, 'PLN') }}) za godzinę
+    pracy (średnio 1680,00 PLN miesięcznie, słownie: {{ transformer.toWords(internaldoc.position.rate * 100*168, 'PLN') }}).
     (dodatkowe składniki wynagrodzenia: premia przyznawana zgodnie z regulaminem wynagrodzenia). </li>
 <li>2. Wynagrodzenie jest wypłacane Pracownikowi Tymczasowemu raz w miesiącu, z dołu, 10-go dnia następnego miesiąca
     lub do ostatniego dnia roboczego przypadającego przed tą datą, w kasie 7HR, w Szczecinie,
@@ -49,11 +49,12 @@
 <p>Artykuł 7</p>
 <li>1. W kwestiach nieuregulowanych niniejszą Umową, znajdują zastosowanie odpowiednie przepisy Ustawy o zatrudnianiu
     pracowników tymczasowych, Kodeksu pracy oraz innych obowiązujących aktów prawnych</li>
-
+<br>
+<br>
 <hr>
-W imieniu 7HR                           Podpis pracownika Tymczasowego
+W imieniu 7HR                           Podpis pracownika Tymczasowego<br>
 
-
+<br>
 <body>
 Oświadczam, że egzemplarz niniejszej umowy otrzymałam(em) i po zapoznaniu się z jej treścią zaproponowane mi warunki
 pracy i wynagrodzenia przyjmuję.

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\InternalDoc;
+use NumberToWords\NumberToWords;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -141,7 +142,9 @@ class InternalDocController extends Controller
     public function printDocument($id){
         $repo = $this->getDoctrine()->getRepository("AppBundle:InternalDoc");
         $doc = $repo->find($id);
-
-        return $this->render("internaldoc/umowa.html.twig",array("internaldoc"=>$doc));
+        $numberToWords =  new NumberToWords();
+        $transformer = $numberToWords->getCurrencyTransformer('pl');
+        return $this->render("internaldoc/umowa.html.twig",array("internaldoc"=>$doc, 'transformer' => $transformer));
     }
+
 }
