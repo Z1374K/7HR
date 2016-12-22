@@ -1,0 +1,29 @@
+<html>
+<h1>UMOWA ZLECENIA</h1>
+<p>Numer {{ internaldoc.id }}</p>
+<p>Zawarta w dni {{ internaldoc.dateofconclusion|date("Y-m-d") }} pomiędzy "Zleceniodawcą"
+    7 HR Kamil Zieliński z siedzibą w SZCZECINIE, 70-347, Bolesława Śmiałego 18/1,
+    Reprezentowanym przez:
+    1. Karolinę Hawryluk
+    2. Jarosława Tomaszewskiego
+    a "Zleceniobiorcą"</p>
+<p> {{ internaldoc.employee.name }} {{ internaldoc.employee.surname  }} Imię Matki {{ internaldoc.employee.motherName }} Imię Ojca {{ internaldoc.employee.fatherName  }} Data urodzenia {{ internaldoc.employee.dob|date("Y-m-d") }} Miejsce urodzenie {{ internaldoc.employee.pob }} numer paszportu {{ internaldoc.employee.passport }} PESEL: ......... Zamieszkały: {{ internaldoc.employee.city }}., ul. {{ internaldoc.employee.address }} </p>
+
+<li> 1. Zleceniobiorca zobowiązuje się do wykonania powierzonych mu następujących czynności:{{ internaldoc.position.name }} W okresie od dnia {{ internaldoc.datefrom|date("Y-m-d") }} do dnia {{ internaldoc.dateto|date("Y-m-d") }}</li>
+<li>2. Za wykonanie czynności wymienionych w pkt. 1 umowy Zleceniobiorca otrzyma wynagrodzenie netto/brutto w wysokości: {{ internaldoc.position.rate }}. godzino/miesięcznie słownie: {{ transformer.toWords(internaldoc.position.rate * 100, 'PLN') }} Miejsce wykonywanie umowy {{ internaldoc.company.city }} </li>
+<li>3. Wypłata wynagrodzenia nastąpi w ciągu 21 dni, po przedłożeniu rachunku Zleceniodawcy. Inne postanowienia umowy: Oświadczam, że wykonuję pracę w dowolnym czasie i  nie pod stałym kierownictwem. Umowę podpisałem dobrowolnie i bez przymusu.</li>
+<li>4. W przypadku nie wywiązania się z umowy w terminie lub wykonania zlecenia w sposób wadliwy Zleceniodawca ma prawo zmniejszyć wynagrodzenie lub odstąpić od umowy bez prawa do wynagrodzenia w terminie do dnia obowiązywania umowy.</li>
+<li>5. Strony nie mogą powoływać się na ustalenia pozaumowne. Zmiany w umowie wymagają zgody pisemnej każdej ze stron pod rygorem nieważności.</li>
+<li>6. W sprawach spornych dotyczących niniejszej umowy należy odwołać się do odpowiednich przepisów Kodeksu Cywilnego.</li>
+<li>7. Zleceniobiorca upoważnia zleceniodawcę do wystawiania rachunku bez jego podpisu za czynności wykonane zgodnie z umową. W razie powstania rozbieżności co do otrzymanego wynagrodzenia, a wykonanych czynności Zleceniobiorca winien w terminie 3 dni złożyć zastrzeżenia do Zleceniodawcy.</li>
+<li>8. Umowę sporządzono w dwóch egzemplarzach o tej samej treści dla każdej ze stron. Zleceniobiorca oświadcza, że zapoznał się z umową oraz ogólnymi warunkami umowy, w tym także z ich tłumaczeniem i nie wnosi co do ich treści żadnych zastrzeżeń</li>
+<li>9. Wraz z podpisaniem umowy Zleceniobiorca oświadcza, że wyraża zgodę na przetwarzanie danych osobowych zawartych w formularzu umowy dla potrzeb rekrutacji oraz celów marketingowych dla 7hr Oświadcza także, że został poinformowany o możliwości wglądu do swoich danych osobowych, ich poprawiania i usuwania. (Dz.U. z 2010 r. nr 229 poz. 1497).</li>
+<li>10. Zleceniobiorca, który nie wyraża zgody na przetwarzanie swoich danych osobowych w sposób określony w pkt. 9, składa stosowne oświadczenie w dniu podpisania umowy.</li>
+<li>11. Integralną część niniejszej umowy stanowią ogólne warunki umowy stanowiące załącznik nr1.</li>
+
+<br>
+<br>
+<hr>
+Podpis Zleceniodawcy                        Podpis Zleceniobiorcy
+
+</html>

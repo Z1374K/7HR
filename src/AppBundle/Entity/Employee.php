@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Employee
@@ -43,9 +44,9 @@ class Employee
     private $pob;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dob", type="date")
+     * @var \string
+     * @Assert\Date()
+     * @ORM\Column(name="dob", type="string", length=50)
      */
     private $dob;
 
@@ -59,9 +60,17 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="passport", type="string", length=255)
+     * @ORM\Column(name="passport", type="string", length=255, nullable=true)
      */
     private $passport;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identity_card", type="string", length=25, nullable=true)
+     */
+    private $identityCard;
+
 
     /**
      * @var int
@@ -125,6 +134,26 @@ class Employee
      * @ORM\Column(name="post_code", type="string", length=255)
      */
     private $postCode;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mother_name", type="string", length=255, nullable=true)
+     */
+    private $motherName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="father_name", type="string", length=255, nullable=true)
+     */
+    private $fatherName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pesel", type="string")
+     */
+    private $pesel;
+
+
 
 
 
@@ -538,5 +567,101 @@ class Employee
     public function getPostCode()
     {
         return $this->postCode;
+    }
+
+    /**
+     * Set motherName
+     *
+     * @param string $motherName
+     *
+     * @return Employee
+     */
+    public function setMotherName($motherName)
+    {
+        $this->motherName = $motherName;
+
+        return $this;
+    }
+
+    /**
+     * Get motherName
+     *
+     * @return string
+     */
+    public function getMotherName()
+    {
+        return $this->motherName;
+    }
+
+    /**
+     * Set fatherName
+     *
+     * @param string $fatherName
+     *
+     * @return Employee
+     */
+    public function setFatherName($fatherName)
+    {
+        $this->fatherName = $fatherName;
+
+        return $this;
+    }
+
+    /**
+     * Get fatherName
+     *
+     * @return string
+     */
+    public function getFatherName()
+    {
+        return $this->fatherName;
+    }
+
+    /**
+     * Set pesel
+     *
+     * @param integer $pesel
+     *
+     * @return Employee
+     */
+    public function setPesel($pesel)
+    {
+        $this->pesel = $pesel;
+
+        return $this;
+    }
+
+    /**
+     * Get pesel
+     *
+     * @return integer
+     */
+    public function getPesel()
+    {
+        return $this->pesel;
+    }
+
+    /**
+     * Set identityCard
+     *
+     * @param string $identityCard
+     *
+     * @return Employee
+     */
+    public function setIdentityCard($identityCard)
+    {
+        $this->identityCard = $identityCard;
+
+        return $this;
+    }
+
+    /**
+     * Get identityCard
+     *
+     * @return string
+     */
+    public function getIdentityCard()
+    {
+        return $this->identityCard;
     }
 }
