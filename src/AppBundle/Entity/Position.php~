@@ -34,6 +34,11 @@ class Position
      * @ORM\Column(name="rate", type="integer")
      */
     private $rate;
+    /**
+     * @ORM\OneToMany(targetEntity="WorkLoad", mappedBy="position")
+     */
+    private $workLoads;
+
 
     /**
      * @ORM\OneToMany(targetEntity="InternalDoc", mappedBy="position")
@@ -136,5 +141,39 @@ class Position
 
     public function __toString(){
         return $this->getName();
+    }
+
+    /**
+     * Add workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     *
+     * @return Position
+     */
+    public function addWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads[] = $workLoad;
+
+        return $this;
+    }
+
+    /**
+     * Remove workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     */
+    public function removeWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads->removeElement($workLoad);
+    }
+
+    /**
+     * Get workLoads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorkLoads()
+    {
+        return $this->workLoads;
     }
 }

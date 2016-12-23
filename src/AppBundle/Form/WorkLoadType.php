@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,11 @@ class WorkLoadType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('hoursInMnth')->add('rate')        ;
+        $builder->add('hoursInMnth')->add('hoursWithFifty')->add('hoursWithHoundred')->add('dateFrom')->add('dateTo')->add('company', EntityType::class,[
+            "class"=>"AppBundle:Company","choice_label"=>"name"
+        ])->add('position', EntityType::class,[
+            "class"=>"AppBundle:Position","choice_label"=>"name"
+        ]);
     }
     
     /**

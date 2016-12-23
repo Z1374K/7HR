@@ -65,7 +65,7 @@ class InternalDoc
     /**
      * @var string
      *
-     * @Assert\Choice(choices={"umowa", "umowaZlecenie"}, message="Wybierz właściwy typ umowy")
+     * @Assert\Choice(choices={"uop", "uzl"}, message="Wybierz właściwy typ umowy")
      *
      * @ORM\Column(name="type", type="string")
      */
@@ -227,5 +227,29 @@ class InternalDoc
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return InternalDoc
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

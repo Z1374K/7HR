@@ -153,6 +153,14 @@ class Employee
      */
     private $pesel;
 
+    /**
+     * @ORM\OneToMany(targetEntity="WorkLoad", mappedBy="employee")
+     */
+    private $workLoads;
+
+
+
+
 
 
 
@@ -663,5 +671,39 @@ class Employee
     public function getIdentityCard()
     {
         return $this->identityCard;
+    }
+
+    /**
+     * Add workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     *
+     * @return Employee
+     */
+    public function addWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads[] = $workLoad;
+
+        return $this;
+    }
+
+    /**
+     * Remove workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     */
+    public function removeWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads->removeElement($workLoad);
+    }
+
+    /**
+     * Get workLoads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorkLoads()
+    {
+        return $this->workLoads;
     }
 }

@@ -1,41 +1,45 @@
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Workloads list</h1>
+    {% block body %}
+        <h1>Workloads list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Hoursinmnth</th>
-                <th>Rate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for workLoad in workLoads %}
-            <tr>
-                <td><a href="{{ path('workload_show', { 'id': workLoad.id }) }}">{{ workLoad.id }}</a></td>
-                <td>{{ workLoad.hoursInMnth }}</td>
-                <td>{{ workLoad.rate }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('workload_show', { 'id': workLoad.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('workload_edit', { 'id': workLoad.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Imię Nazwisko pracownika</th>
+                    <th>Nazwa firmy</th>
+                    <th>Stanowisko</th>
+                    <th>Stawka</th>
+                    <th>Godzin w miesiącu</th>
+                    <th>50%</th>
+                    <th>100%</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for workLoad in workLoads %}
+                <tr>
+                    <td><a href="{{ path('workload_show', { 'id': workLoad.id }) }}">{{ workLoad.id }}</a></td>
 
-    <ul>
-        <li>
-            <a href="{{ path('workload_new') }}">Create a new workLoad</a>
-        </li>
-    </ul>
-{% endblock %}
+                    <td>{{ workLoad.employee.name }}
+                    <td>{{ workLoad.company}}</td>
+                    <td>{{ workLoad.position}}</td>
+                    <td>{{ workLoad.hoursInMnth }}</td>
+                    <td>{{ workLoad.hoursWithFifty }}</td>
+                    <td>{{ workLoad.hoursWithHoundred }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('workload_show', { 'id': workLoad.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('workload_edit', { 'id': workLoad.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}

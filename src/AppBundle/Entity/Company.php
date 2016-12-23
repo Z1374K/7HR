@@ -81,6 +81,11 @@ class Company
      * @ORM\OneToMany(targetEntity="InternalDoc", mappedBy="company")
      */
     private $internalDocs;
+    /**
+     * @ORM\OneToMany(targetEntity="WorkLoad", mappedBy="company")
+     */
+    private $workLoads;
+
 
 
 
@@ -322,5 +327,39 @@ class Company
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Add workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     *
+     * @return Company
+     */
+    public function addWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads[] = $workLoad;
+
+        return $this;
+    }
+
+    /**
+     * Remove workLoad
+     *
+     * @param \AppBundle\Entity\WorkLoad $workLoad
+     */
+    public function removeWorkLoad(\AppBundle\Entity\WorkLoad $workLoad)
+    {
+        $this->workLoads->removeElement($workLoad);
+    }
+
+    /**
+     * Get workLoads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorkLoads()
+    {
+        return $this->workLoads;
     }
 }

@@ -44,6 +44,9 @@
                         <li>
                             <a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
                         </li>
+                        <li>
+                            <a href="{{ path('workload_new', { 'employee_id': employee.id }) }}">wprowadz godziny</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -57,3 +60,8 @@
         </li>
     </ul>
 {% endblock %}
+
+<html>
+<form action="" method="get" enctype="text/plain"><div>
+        <input
+</html>

@@ -31,12 +31,47 @@ class WorkLoad
     /**
      * @var int
      *
-     * @ORM\Column(name="rate", type="integer")
+     * @ORM\Column(name="hours_with_fifty", type="integer")
      */
-    private $rate;
+    private $hoursWithFifty;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="hours_with_houndred", type="integer")
+     */
+    private $hoursWithHoundred;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="workLoads")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     */
     private $employee;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Position", inversedBy="workLoads")
+     * @ORM\JoinColumn(name="position_id", referencedColumnName="id")
+     */
+    private $position;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="workLoads")
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     */
+    private $company;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="date_from", type="integer")
+     */
+    private $dateFrom;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="date_to", type="integer")
+     */
+    private $dateTo;
+
 
 
     /**
@@ -73,25 +108,122 @@ class WorkLoad
     }
 
     /**
-     * Set rate
+     * Set hoursWithFifty
      *
-     * @param integer $rate
+     * @param integer $hoursWithFifty
+     *
      * @return WorkLoad
      */
-    public function setRate($rate)
+    public function setHoursWithFifty($hoursWithFifty)
     {
-        $this->rate = $rate;
+        $this->hoursWithFifty = $hoursWithFifty;
 
         return $this;
     }
 
     /**
-     * Get rate
+     * Get hoursWithFifty
      *
-     * @return integer 
+     * @return integer
      */
-    public function getRate()
+    public function getHoursWithFifty()
     {
-        return $this->rate;
+        return $this->hoursWithFifty;
+    }
+
+    /**
+     * Set hoursWithHoundred
+     *
+     * @param integer $hoursWithHoundred
+     *
+     * @return WorkLoad
+     */
+    public function setHoursWithHoundred($hoursWithHoundred)
+    {
+        $this->hoursWithHoundred = $hoursWithHoundred;
+
+        return $this;
+    }
+
+    /**
+     * Get hoursWithHoundred
+     *
+     * @return integer
+     */
+    public function getHoursWithHoundred()
+    {
+        return $this->hoursWithHoundred;
+    }
+
+    /**
+     * Set employee
+     *
+     * @param \AppBundle\Entity\Employee $employee
+     *
+     * @return WorkLoad
+     */
+    public function setEmployee(\AppBundle\Entity\Employee $employee = null)
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \AppBundle\Entity\Employee
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
+
+    /**
+     * Set position
+     *
+     * @param \AppBundle\Entity\Position $position
+     *
+     * @return WorkLoad
+     */
+    public function setPosition(\AppBundle\Entity\Position $position = null)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return \AppBundle\Entity\Position
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \AppBundle\Entity\Company $company
+     *
+     * @return WorkLoad
+     */
+    public function setCompany(\AppBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \AppBundle\Entity\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

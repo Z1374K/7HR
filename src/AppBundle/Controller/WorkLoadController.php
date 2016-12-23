@@ -34,12 +34,14 @@ class WorkLoadController extends Controller
     /**
      * Creates a new workLoad entity.
      *
-     * @Route("/new", name="workload_new")
+     * @Route("/new/{employee_id}", name="workload_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $employee_id)
     {
         $workLoad = new Workload();
+        $workLoad->setEmployee($this->getDoctrine()->getRepository("AppBundle:Employee")->find($employee_id));
+
         $form = $this->createForm('AppBundle\Form\WorkLoadType', $workLoad);
         $form->handleRequest($request);
 
