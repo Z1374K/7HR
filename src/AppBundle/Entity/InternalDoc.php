@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * InternalDoc
@@ -61,12 +62,23 @@ class InternalDoc
      */
     private $company;
 
+    /**
+     * @var string
+     *
+     * @Assert\Choice(choices={"uop", "uzl"}, message="Wybierz właściwy typ umowy")
+     *
+     * @ORM\Column(name="type", type="string")
+     */
+    private $type;
+
+
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -77,6 +89,7 @@ class InternalDoc
      * Set dateOfConclusion
      *
      * @param \DateTime $dateOfConclusion
+     *
      * @return InternalDoc
      */
     public function setDateOfConclusion($dateOfConclusion)
@@ -89,7 +102,7 @@ class InternalDoc
     /**
      * Get dateOfConclusion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateOfConclusion()
     {
@@ -100,6 +113,7 @@ class InternalDoc
      * Set dateFrom
      *
      * @param \DateTime $dateFrom
+     *
      * @return InternalDoc
      */
     public function setDateFrom($dateFrom)
@@ -112,7 +126,7 @@ class InternalDoc
     /**
      * Get dateFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateFrom()
     {
@@ -123,6 +137,7 @@ class InternalDoc
      * Set dateTo
      *
      * @param \DateTime $dateTo
+     *
      * @return InternalDoc
      */
     public function setDateTo($dateTo)
@@ -135,7 +150,7 @@ class InternalDoc
     /**
      * Get dateTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateTo()
     {
@@ -146,6 +161,7 @@ class InternalDoc
      * Set position
      *
      * @param \AppBundle\Entity\Position $position
+     *
      * @return InternalDoc
      */
     public function setPosition(\AppBundle\Entity\Position $position = null)
@@ -158,7 +174,7 @@ class InternalDoc
     /**
      * Get position
      *
-     * @return \AppBundle\Entity\Position 
+     * @return \AppBundle\Entity\Position
      */
     public function getPosition()
     {
@@ -169,6 +185,7 @@ class InternalDoc
      * Set employee
      *
      * @param \AppBundle\Entity\Employee $employee
+     *
      * @return InternalDoc
      */
     public function setEmployee(\AppBundle\Entity\Employee $employee = null)
@@ -181,7 +198,7 @@ class InternalDoc
     /**
      * Get employee
      *
-     * @return \AppBundle\Entity\Employee 
+     * @return \AppBundle\Entity\Employee
      */
     public function getEmployee()
     {
@@ -192,6 +209,7 @@ class InternalDoc
      * Set company
      *
      * @param \AppBundle\Entity\Company $company
+     *
      * @return InternalDoc
      */
     public function setCompany(\AppBundle\Entity\Company $company = null)
@@ -204,10 +222,34 @@ class InternalDoc
     /**
      * Get company
      *
-     * @return \AppBundle\Entity\Company 
+     * @return \AppBundle\Entity\Company
      */
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return InternalDoc
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

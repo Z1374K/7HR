@@ -149,7 +149,7 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="pesel", type="string")
+     * @ORM\Column(name="pesel", type="string", nullable=true)
      */
     private $pesel;
 
@@ -639,5 +639,29 @@ class Employee
     public function getPesel()
     {
         return $this->pesel;
+    }
+
+    /**
+     * Set identityCard
+     *
+     * @param string $identityCard
+     *
+     * @return Employee
+     */
+    public function setIdentityCard($identityCard)
+    {
+        $this->identityCard = $identityCard;
+
+        return $this;
+    }
+
+    /**
+     * Get identityCard
+     *
+     * @return string
+     */
+    public function getIdentityCard()
+    {
+        return $this->identityCard;
     }
 }

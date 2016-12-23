@@ -36,6 +36,9 @@ class WorkLoad
     private $rate;
 
 
+    private $employee;
+
+
     /**
      * Get id
      *

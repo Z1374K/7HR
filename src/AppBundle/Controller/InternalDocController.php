@@ -144,7 +144,12 @@ class InternalDocController extends Controller
         $doc = $repo->find($id);
         $numberToWords =  new NumberToWords();
         $transformer = $numberToWords->getCurrencyTransformer('pl');
-        return $this->render("internaldoc/umowa.html.twig",array("internaldoc"=>$doc, 'transformer' => $transformer));
+        if ($doc->getType() == 'uzl'){
+            return $this->render("internaldoc/umowaZlecenie.html.twig",array("internaldoc"=>$doc, 'transformer' => $transformer));
+        }
+        elseif ($doc->getType() == 'uop'){
+            return $this->render("internaldoc/umowa.html.twig", array("internaldoc"=>$doc, 'transformer'=> $transformer));
+        }
     }
 
 }
