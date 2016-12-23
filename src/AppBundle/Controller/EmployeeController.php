@@ -20,11 +20,19 @@ class EmployeeController extends Controller
      * @Route("/", name="employee_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $employees = $em->getRepository('AppBundle:Employee')->findAll();
+        $search = $request->get('search','');
+//        $employees = $em->getRepository('AppBundle:Employee')->findBy(array('name' => $search));
+
+        $employees = $em->getRepository('AppBundle:Employee')->createQueryBuilder('e')
+            ->where('e.name LIKE :name')
+            ->orWhere('e.surName LIKE :name')
+            ->setParameter('name', "%{$search}%")
+            ->getQuery()
+            ->getResult();
 
         return $this->render('employee/index.html.twig', array(
             'employees' => $employees,

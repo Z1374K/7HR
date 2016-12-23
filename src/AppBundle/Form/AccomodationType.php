@@ -13,7 +13,7 @@ class AccomodationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('owner')->add('varCost')->add('constantCost')->add('roomNumber')->add('bedNumber')->add('account')->add('telephone')->add('employeeCost')        ;
+        $builder->add('owner')->add('varCost')->add('constantCost')->add('roomNumber')->add('bedNumber')->add('account')->add('telephone')->add('employeeCost')->add('town')       ;
     }
     
     /**
