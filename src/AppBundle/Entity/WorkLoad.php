@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="work_load")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WorkLoadRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class WorkLoad
 {
@@ -72,6 +73,25 @@ class WorkLoad
      * @ORM\Column(name="date_to", type="string", length=50)
      */
     private $dateTo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total", type="float")
+     */
+    private $total;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="netto", type="float")
+     */
+    private $netto;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="wages", type="float")
+     */
+    private $wages;
 
 
 
@@ -274,5 +294,103 @@ class WorkLoad
     public function getDateTo()
     {
         return $this->dateTo;
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     *
+     * @return WorkLoad
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+
+    /** @ORM\PrePersist()
+     *
+     */
+    public function calculateTotal()
+    {
+        $total = $this->getHoursInMnth()*$this->getPosition()->getRate();
+        $totalFifty = $this->getHoursWithFifty()*($this->getPosition()->getRate())*1.5;
+        $totalHoundred = $this->getHoursWithHoundred()*($this->getPosition()->getRate())*2;
+        $this->setTotal($total+$totalFifty+$totalHoundred);
+
+        $this->setNetto( $this->calculatNetto($total) );
+        $this->setWages( $this->wages($this->getTotal(),$this->getNetto()));
+    }
+
+    public function calculatNetto($total){
+        $netto = $total - $this->getEmployee()->getAccomodation()->getEmployeeCost();
+        return $netto;
+    }
+    private function wages($total, $netto){
+        $wages = $this->total - $this->netto;;
+        return $wages;
+
+    }
+
+
+    /**
+     * Set netto
+     *
+     * @param float $netto
+     *
+     * @return WorkLoad
+     */
+    public function setNetto($netto)
+    {
+        $this->netto = $netto;
+
+        return $this;
+    }
+
+    /**
+     * Get netto
+     *
+     * @return float
+     */
+    public function getNetto()
+    {
+        return $this->netto;
+    }
+
+    /**
+     * Set wages
+     *
+     * @param float $wages
+     *
+     * @return WorkLoad
+     */
+    public function setWages($wages)
+    {
+        $this->wages = $wages;
+
+        return $this;
+    }
+
+    /**
+     * Get wages
+     *
+     * @return float
+     */
+    public function getWages()
+    {
+        return $this->wages;
     }
 }

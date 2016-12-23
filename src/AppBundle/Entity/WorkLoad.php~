@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * WorkLoad
  *
  * @ORM\Table(name="work_load")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WorkLoadRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class WorkLoad
 {
@@ -60,17 +62,36 @@ class WorkLoad
      */
     private $company;
     /**
-     * @var int
-     *
-     * @ORM\Column(name="date_from", type="integer")
+     * @var \string
+     * @Assert\Date()
+     * @ORM\Column(name="date_from", type="string", length=50)
      */
     private $dateFrom;
     /**
-     * @var int
-     *
-     * @ORM\Column(name="date_to", type="integer")
+     * @var \string
+     * @Assert\Date()
+     * @ORM\Column(name="date_to", type="string", length=50)
      */
     private $dateTo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total", type="float")
+     */
+    private $total;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="netto", type="float")
+     */
+    private $netto;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="wages", type="float")
+     */
+    private $wages;
 
 
 
@@ -225,5 +246,124 @@ class WorkLoad
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set dateFrom
+     *
+     * @param integer $dateFrom
+     *
+     * @return WorkLoad
+     */
+    public function setDateFrom($dateFrom)
+    {
+        $this->dateFrom = $dateFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFrom
+     *
+     * @return integer
+     */
+    public function getDateFrom()
+    {
+        return $this->dateFrom;
+    }
+
+    /**
+     * Set dateTo
+     *
+     * @param integer $dateTo
+     *
+     * @return WorkLoad
+     */
+    public function setDateTo($dateTo)
+    {
+        $this->dateTo = $dateTo;
+
+        return $this;
+    }
+
+    /**
+     * Get dateTo
+     *
+     * @return integer
+     */
+    public function getDateTo()
+    {
+        return $this->dateTo;
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     *
+     * @return WorkLoad
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+
+    /** @ORM\PrePersist()
+     *
+     */
+    public function calculateTotal()
+    {
+        $total = $this->getHoursInMnth()*$this->getPosition()->getRate();
+        $totalFifty = $this->getHoursWithFifty()*($this->getPosition()->getRate())*1.5;
+        $totalHoundred = $this->getHoursWithHoundred()*($this->getPosition()->getRate())*2;
+        $this->setTotal($total+$totalFifty+$totalHoundred);
+
+        $this->setNetto( $this->calculatNetto($total) );
+    }
+
+    public function calculatNetto($total){
+        $netto = $total - $this->getEmployee()->getAccomodation()->getEmployeeCost();
+        return $netto;
+    }
+    private function wages(){
+        $wages = $this->total - $this->netto;
+}
+
+
+    /**
+     * Set netto
+     *
+     * @param float $netto
+     *
+     * @return WorkLoad
+     */
+    public function setNetto($netto)
+    {
+        $this->netto = $netto;
+
+        return $this;
+    }
+
+    /**
+     * Get netto
+     *
+     * @return float
+     */
+    public function getNetto()
+    {
+        return $this->netto;
     }
 }

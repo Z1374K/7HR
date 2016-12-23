@@ -90,7 +90,7 @@ class WorkLoadController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('workload_edit', array('id' => $workLoad->getId()));
+            return $this->redirectToRoute('workload_show', array('id' => $workLoad->getId()));
         }
 
         return $this->render('workload/edit.html.twig', array(

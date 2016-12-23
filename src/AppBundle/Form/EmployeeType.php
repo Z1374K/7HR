@@ -14,7 +14,7 @@ class EmployeeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')      ;
+        $builder->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
     }
     
     /**

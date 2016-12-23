@@ -14,7 +14,7 @@ class WorkLoadType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('hoursInMnth')->add('hoursWithFifty')->add('hoursWithHoundred')->add('dateFrom')->add('dateTo')->add('company', EntityType::class,[
+        $builder->add('hoursInMnth')->add('hoursWithFifty')->add('hoursWithHoundred')->add('total')->add('dateFrom')->add('dateTo')->add('company', EntityType::class,[
             "class"=>"AppBundle:Company","choice_label"=>"name"
         ])->add('position', EntityType::class,[
             "class"=>"AppBundle:Position","choice_label"=>"name"

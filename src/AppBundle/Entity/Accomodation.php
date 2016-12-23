@@ -91,19 +91,24 @@ class Accomodation
     private $availableBeds;
 
     /**
-     * @return mixed
+     * @ORM\OneToMany(targetEntity="Employee", mappedBy="accomodation")
      */
-    public function getAvailableBeds()
-    {
-        return $this->getBedNumber();
-    }
+    private $employees;
 
 
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,6 +119,7 @@ class Accomodation
      * Set owner
      *
      * @param string $owner
+     *
      * @return Accomodation
      */
     public function setOwner($owner)
@@ -126,7 +132,7 @@ class Accomodation
     /**
      * Get owner
      *
-     * @return string 
+     * @return string
      */
     public function getOwner()
     {
@@ -137,6 +143,7 @@ class Accomodation
      * Set varCost
      *
      * @param integer $varCost
+     *
      * @return Accomodation
      */
     public function setVarCost($varCost)
@@ -149,7 +156,7 @@ class Accomodation
     /**
      * Get varCost
      *
-     * @return integer 
+     * @return integer
      */
     public function getVarCost()
     {
@@ -160,6 +167,7 @@ class Accomodation
      * Set constantCost
      *
      * @param integer $constantCost
+     *
      * @return Accomodation
      */
     public function setConstantCost($constantCost)
@@ -172,7 +180,7 @@ class Accomodation
     /**
      * Get constantCost
      *
-     * @return integer 
+     * @return integer
      */
     public function getConstantCost()
     {
@@ -183,6 +191,7 @@ class Accomodation
      * Set roomNumber
      *
      * @param integer $roomNumber
+     *
      * @return Accomodation
      */
     public function setRoomNumber($roomNumber)
@@ -195,7 +204,7 @@ class Accomodation
     /**
      * Get roomNumber
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoomNumber()
     {
@@ -206,6 +215,7 @@ class Accomodation
      * Set bedNumber
      *
      * @param integer $bedNumber
+     *
      * @return Accomodation
      */
     public function setBedNumber($bedNumber)
@@ -218,7 +228,7 @@ class Accomodation
     /**
      * Get bedNumber
      *
-     * @return integer 
+     * @return integer
      */
     public function getBedNumber()
     {
@@ -228,7 +238,8 @@ class Accomodation
     /**
      * Set account
      *
-     * @param integer $account
+     * @param string $account
+     *
      * @return Accomodation
      */
     public function setAccount($account)
@@ -241,7 +252,7 @@ class Accomodation
     /**
      * Get account
      *
-     * @return integer 
+     * @return string
      */
     public function getAccount()
     {
@@ -252,6 +263,7 @@ class Accomodation
      * Set telephone
      *
      * @param integer $telephone
+     *
      * @return Accomodation
      */
     public function setTelephone($telephone)
@@ -264,7 +276,7 @@ class Accomodation
     /**
      * Get telephone
      *
-     * @return integer 
+     * @return integer
      */
     public function getTelephone()
     {
@@ -275,6 +287,7 @@ class Accomodation
      * Set employeeCost
      *
      * @param integer $employeeCost
+     *
      * @return Accomodation
      */
     public function setEmployeeCost($employeeCost)
@@ -287,7 +300,7 @@ class Accomodation
     /**
      * Get employeeCost
      *
-     * @return integer 
+     * @return integer
      */
     public function getEmployeeCost()
     {
@@ -298,6 +311,7 @@ class Accomodation
      * Set town
      *
      * @param string $town
+     *
      * @return Accomodation
      */
     public function setTown($town)
@@ -310,10 +324,49 @@ class Accomodation
     /**
      * Get town
      *
-     * @return string 
+     * @return string
      */
     public function getTown()
     {
         return $this->town;
+    }
+
+    /**
+     * Add employee
+     *
+     * @param \AppBundle\Entity\Employee $employee
+     *
+     * @return Accomodation
+     */
+    public function addEmployee(\AppBundle\Entity\Employee $employee)
+    {
+        $this->employees[] = $employee;
+
+        return $this;
+    }
+
+    /**
+     * Remove employee
+     *
+     * @param \AppBundle\Entity\Employee $employee
+     */
+    public function removeEmployee(\AppBundle\Entity\Employee $employee)
+    {
+        $this->employees->removeElement($employee);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
+
+
+    public function __toString(){
+        return $this->getOwner();
     }
 }

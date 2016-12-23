@@ -158,8 +158,11 @@ class Employee
      */
     private $workLoads;
 
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Accomodation", inversedBy="employees")
+     * @ORM\JoinColumn(name="accomodation_id", referencedColumnName="id")
+     */
+    private $accomodation;
 
 
 
@@ -173,12 +176,13 @@ class Employee
     {
         $this->document = new \Doctrine\Common\Collections\ArrayCollection();
         $this->internalDocs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->workLoads = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -189,6 +193,7 @@ class Employee
      * Set name
      *
      * @param string $name
+     *
      * @return Employee
      */
     public function setName($name)
@@ -201,7 +206,7 @@ class Employee
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -212,6 +217,7 @@ class Employee
      * Set surName
      *
      * @param string $surName
+     *
      * @return Employee
      */
     public function setSurName($surName)
@@ -224,7 +230,7 @@ class Employee
     /**
      * Get surName
      *
-     * @return string 
+     * @return string
      */
     public function getSurName()
     {
@@ -235,6 +241,7 @@ class Employee
      * Set pob
      *
      * @param string $pob
+     *
      * @return Employee
      */
     public function setPob($pob)
@@ -247,7 +254,7 @@ class Employee
     /**
      * Get pob
      *
-     * @return string 
+     * @return string
      */
     public function getPob()
     {
@@ -257,7 +264,8 @@ class Employee
     /**
      * Set dob
      *
-     * @param \DateTime $dob
+     * @param string $dob
+     *
      * @return Employee
      */
     public function setDob($dob)
@@ -270,7 +278,7 @@ class Employee
     /**
      * Get dob
      *
-     * @return \DateTime 
+     * @return string
      */
     public function getDob()
     {
@@ -281,6 +289,7 @@ class Employee
      * Set citizenship
      *
      * @param string $citizenship
+     *
      * @return Employee
      */
     public function setCitizenship($citizenship)
@@ -293,7 +302,7 @@ class Employee
     /**
      * Get citizenship
      *
-     * @return string 
+     * @return string
      */
     public function getCitizenship()
     {
@@ -304,6 +313,7 @@ class Employee
      * Set passport
      *
      * @param string $passport
+     *
      * @return Employee
      */
     public function setPassport($passport)
@@ -316,7 +326,7 @@ class Employee
     /**
      * Get passport
      *
-     * @return string 
+     * @return string
      */
     public function getPassport()
     {
@@ -324,9 +334,34 @@ class Employee
     }
 
     /**
+     * Set identityCard
+     *
+     * @param string $identityCard
+     *
+     * @return Employee
+     */
+    public function setIdentityCard($identityCard)
+    {
+        $this->identityCard = $identityCard;
+
+        return $this;
+    }
+
+    /**
+     * Get identityCard
+     *
+     * @return string
+     */
+    public function getIdentityCard()
+    {
+        return $this->identityCard;
+    }
+
+    /**
      * Set status
      *
      * @param integer $status
+     *
      * @return Employee
      */
     public function setStatus($status)
@@ -339,7 +374,7 @@ class Employee
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -350,6 +385,7 @@ class Employee
      * Set visaFrom
      *
      * @param \DateTime $visaFrom
+     *
      * @return Employee
      */
     public function setVisaFrom($visaFrom)
@@ -362,7 +398,7 @@ class Employee
     /**
      * Get visaFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getVisaFrom()
     {
@@ -373,6 +409,7 @@ class Employee
      * Set visaTo
      *
      * @param \DateTime $visaTo
+     *
      * @return Employee
      */
     public function setVisaTo($visaTo)
@@ -385,7 +422,7 @@ class Employee
     /**
      * Get visaTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getVisaTo()
     {
@@ -396,6 +433,7 @@ class Employee
      * Set permitFrom
      *
      * @param \DateTime $permitFrom
+     *
      * @return Employee
      */
     public function setPermitFrom($permitFrom)
@@ -408,7 +446,7 @@ class Employee
     /**
      * Get permitFrom
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPermitFrom()
     {
@@ -419,6 +457,7 @@ class Employee
      * Set permitTo
      *
      * @param \DateTime $permitTo
+     *
      * @return Employee
      */
     public function setPermitTo($permitTo)
@@ -431,7 +470,7 @@ class Employee
     /**
      * Get permitTo
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPermitTo()
     {
@@ -439,79 +478,10 @@ class Employee
     }
 
     /**
-     * Add document
-     *
-     * @param \AppBundle\Entity\Document $document
-     * @return Employee
-     */
-    public function addDocument(\AppBundle\Entity\Document $document)
-    {
-        $this->document[] = $document;
-
-        return $this;
-    }
-
-    /**
-     * Remove document
-     *
-     * @param \AppBundle\Entity\Document $document
-     */
-    public function removeDocument(\AppBundle\Entity\Document $document)
-    {
-        $this->document->removeElement($document);
-    }
-
-    /**
-     * Get document
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * Add internalDocs
-     *
-     * @param \AppBundle\Entity\InternalDoc $internalDocs
-     * @return Employee
-     */
-    public function addInternalDoc(\AppBundle\Entity\InternalDoc $internalDocs)
-    {
-        $this->internalDocs[] = $internalDocs;
-
-        return $this;
-    }
-
-    /**
-     * Remove internalDocs
-     *
-     * @param \AppBundle\Entity\InternalDoc $internalDocs
-     */
-    public function removeInternalDoc(\AppBundle\Entity\InternalDoc $internalDocs)
-    {
-        $this->internalDocs->removeElement($internalDocs);
-    }
-
-    /**
-     * Get internalDocs
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getInternalDocs()
-    {
-        return $this->internalDocs;
-    }
-    public function __toString()
-    {
-        return $this->getName()." ".$this->getSurName();
-    }
-
-    /**
      * Set address
      *
      * @param string $address
+     *
      * @return Employee
      */
     public function setAddress($address)
@@ -524,7 +494,7 @@ class Employee
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -535,6 +505,7 @@ class Employee
      * Set city
      *
      * @param string $city
+     *
      * @return Employee
      */
     public function setCity($city)
@@ -547,7 +518,7 @@ class Employee
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -558,6 +529,7 @@ class Employee
      * Set postCode
      *
      * @param string $postCode
+     *
      * @return Employee
      */
     public function setPostCode($postCode)
@@ -570,7 +542,7 @@ class Employee
     /**
      * Get postCode
      *
-     * @return string 
+     * @return string
      */
     public function getPostCode()
     {
@@ -628,7 +600,7 @@ class Employee
     /**
      * Set pesel
      *
-     * @param integer $pesel
+     * @param string $pesel
      *
      * @return Employee
      */
@@ -642,7 +614,7 @@ class Employee
     /**
      * Get pesel
      *
-     * @return integer
+     * @return string
      */
     public function getPesel()
     {
@@ -650,27 +622,71 @@ class Employee
     }
 
     /**
-     * Set identityCard
+     * Add document
      *
-     * @param string $identityCard
+     * @param \AppBundle\Entity\Document $document
      *
      * @return Employee
      */
-    public function setIdentityCard($identityCard)
+    public function addDocument(\AppBundle\Entity\Document $document)
     {
-        $this->identityCard = $identityCard;
+        $this->document[] = $document;
 
         return $this;
     }
 
     /**
-     * Get identityCard
+     * Remove document
      *
-     * @return string
+     * @param \AppBundle\Entity\Document $document
      */
-    public function getIdentityCard()
+    public function removeDocument(\AppBundle\Entity\Document $document)
     {
-        return $this->identityCard;
+        $this->document->removeElement($document);
+    }
+
+    /**
+     * Get document
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * Add internalDoc
+     *
+     * @param \AppBundle\Entity\InternalDoc $internalDoc
+     *
+     * @return Employee
+     */
+    public function addInternalDoc(\AppBundle\Entity\InternalDoc $internalDoc)
+    {
+        $this->internalDocs[] = $internalDoc;
+
+        return $this;
+    }
+
+    /**
+     * Remove internalDoc
+     *
+     * @param \AppBundle\Entity\InternalDoc $internalDoc
+     */
+    public function removeInternalDoc(\AppBundle\Entity\InternalDoc $internalDoc)
+    {
+        $this->internalDocs->removeElement($internalDoc);
+    }
+
+    /**
+     * Get internalDocs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInternalDocs()
+    {
+        return $this->internalDocs;
     }
 
     /**
@@ -705,5 +721,34 @@ class Employee
     public function getWorkLoads()
     {
         return $this->workLoads;
+    }
+
+    /**
+     * Set accomodation
+     *
+     * @param \AppBundle\Entity\Accomodation $accomodation
+     *
+     * @return Employee
+     */
+    public function setAccomodation(\AppBundle\Entity\Accomodation $accomodation = null)
+    {
+        $this->accomodation = $accomodation;
+
+        return $this;
+    }
+
+    /**
+     * Get accomodation
+     *
+     * @return \AppBundle\Entity\Accomodation
+     */
+    public function getAccomodation()
+    {
+        return $this->accomodation;
+    }
+
+    public function __toString()
+    {
+     return $this->name." ".$this->surName;
     }
 }

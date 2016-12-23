@@ -7,6 +7,7 @@ use NumberToWords\NumberToWords;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Internaldoc controller.
@@ -145,10 +146,28 @@ class InternalDocController extends Controller
         $numberToWords =  new NumberToWords();
         $transformer = $numberToWords->getCurrencyTransformer('pl');
         if ($doc->getType() == 'uzl'){
-            return $this->render("internaldoc/umowaZlecenie.html.twig",array("internaldoc"=>$doc, 'transformer' => $transformer));
+
+            $html = $this->render("internaldoc/umowaZlecenie.html.twig",array("internaldoc"=>$doc, 'transformer' => $transformer));
+
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="file.pdf"'
+                ));
         }
         elseif ($doc->getType() == 'uop'){
-            return $this->render("internaldoc/umowa.html.twig", array("internaldoc"=>$doc, 'transformer'=> $transformer));
+
+            $html = $this->render("internaldoc/umowa.html.twig", array("internaldoc"=>$doc, 'transformer'=> $transformer));
+
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="file.pdf"'
+                ));
         }
     }
 
