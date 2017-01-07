@@ -336,7 +336,7 @@ class WorkLoad
     }
 
     public function calculatNetto($total){
-        $netto = $total - ($this->getEmployee()->getAccomodation()->getEmployeeCost());
+        $netto = $this->getEmployee()->getAccomodation()->getEmployeeCost();
         return $netto;
     }
     private function wages($total, $netto){

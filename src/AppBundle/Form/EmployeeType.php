@@ -18,9 +18,9 @@ class EmployeeType extends AbstractType
 
         $builder->add('forWho', ChoiceType::class, array('choices' => array ('internal'=>true, 'external'=>false,), 'choices_as_values'=>true,'choice_label' => function ($value, $key, $index){
             if ($value == true){
-                return "Internal";
+                return "internal";
             }
-            return strtoupper($key);
+            return strtolower($key);
     }))->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
 
     }
