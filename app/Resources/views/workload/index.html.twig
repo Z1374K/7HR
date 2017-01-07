@@ -7,11 +7,12 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Imię Nazwisko pracownika</th>
+                    <th>Imię </th>
+                    <th>Nazwisko </th>
                     <th>Nazwa firmy</th>
                     <th>Stanowisko</th>
                     <th>Stawka</th>
-                    <th>Godzin w miesiącu</th>
+                    <th>Godzin</th>
                     <th>50%</th>
                     <th>100%</th>
                     <th>Actions</th>
@@ -22,12 +23,15 @@
                 <tr>
                     <td><a href="{{ path('workload_show', { 'id': workLoad.id }) }}">{{ workLoad.id }}</a></td>
 
-                    <td>{{ workLoad.employee.name }}
+                    <td>{{ workLoad.employee.name  }}</td>
+                    <td>{{ workLoad.employee.surName }}</td>
                     <td>{{ workLoad.company}}</td>
                     <td>{{ workLoad.position}}</td>
+                    <td>{{ workLoad.position.rate }}</td>
                     <td>{{ workLoad.hoursInMnth }}</td>
                     <td>{{ workLoad.hoursWithFifty }}</td>
                     <td>{{ workLoad.hoursWithHoundred }}</td>
+
                     <td>
                         <ul>
                             <li>
