@@ -16,21 +16,12 @@ class EmployeeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
-
-
-
-        $builder->add('nazwisko')
-                ->add('imie')
-                ->add('dataUr')
-                ->add('miejsceUr')
-                ->add('miejsceZam')
-                ->add('ulica')
-                ->add('obywatelstwo', ChoiceType::class, array(
-                    'choices'  => array(
-                        'pol' => 'Polskie',
-                        'ukr' => 'Ukraińskie',),))
-                ->add('nrPaszportu')->add('status')        ;
+        $builder->add('forWho', ChoiceType::class, array('choices' => array ('internal'=>true, 'external'=>false,), 'choices_as_values'=>true,'choice_label' => function ($value, $key, $index){
+            if ($value == true){
+                return "Internal";
+            }
+            return strtoupper($key);
+    }))->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
 
     }
     

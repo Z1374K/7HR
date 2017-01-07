@@ -70,7 +70,12 @@ class Employee
      * @ORM\Column(name="identity_card", type="string", length=25, nullable=true)
      */
     private $identityCard;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="for_who", type="string", length=50)
+     */
+    private $forWho;
 
     /**
      * @var int
@@ -275,6 +280,7 @@ class Employee
         return $this;
     }
 
+
     /**
      * Get dob
      *
@@ -436,6 +442,28 @@ class Employee
      *
      * @return Employee
      */
+    /**
+     * Set forWho
+     *
+     * @param string $forWho
+     *
+     * @return Employee
+     */
+    public function setForWho($forWho)
+    {
+        $this->forWho = $forWho;
+
+        return $this;
+    }
+    /**
+     * Get forWho
+     *
+     * @return string
+     */
+    public function getForWho()
+    {
+        return $this->forWho;
+    }
     public function setPermitFrom($permitFrom)
     {
         $this->permitFrom = $permitFrom;
