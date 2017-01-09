@@ -5,6 +5,9 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        {% if employee.forWho == true %}
+        {{ employee.citizenship }}
+        {% endif %}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 

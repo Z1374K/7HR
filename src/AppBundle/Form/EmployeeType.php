@@ -21,7 +21,13 @@ class EmployeeType extends AbstractType
                 return "internal";
             }
             return strtolower($key);
-    }))->add('name')->add('surName')->add('pob')->add('dob',TextType::class)->add('citizenship')->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
+    }))->add('citizenship', ChoiceType::class, array('choices'=>array('polskie'=>true, 'ukrainskie'=>false,),'choices_as_values'=>true, 'choice_label'=> function ($value, $key){
+        if ($value == true){
+            return "polskie";
+        }
+        return strtolower($key);
+        })
+        )->add('name', 'text', array('attr' => array('class'=>'form1')))->add('surName')->add('pob')->add('dob',TextType::class)->add('passport')->add('status')->add('visaFrom')->add('visaTo')->add('permitFrom')->add('permitTo')->add('address')->add('city')->add('postCode')->add('motherName')->add('fatherName')->add('pesel')->add('identityCard')->add('accomodation');
 
     }
     

@@ -10,6 +10,8 @@
                 <th>Dateofconclusion</th>
                 <th>Datefrom</th>
                 <th>Dateto</th>
+                <th>Name</th>
+                <th>Surname</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                 <td>{% if internalDoc.dateOfConclusion %}{{ internalDoc.dateOfConclusion|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if internalDoc.dateFrom %}{{ internalDoc.dateFrom|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if internalDoc.dateTo %}{{ internalDoc.dateTo|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ internalDoc.employee.name }}</td>
+                <td>{{ internalDoc.employee.surName }}</td>
                 <td>
                     <ul>
                         <li>
